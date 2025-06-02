@@ -75,6 +75,8 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
         }
         
         .btn-primary {
@@ -176,15 +178,15 @@
             <h1>Iniciar Sesión</h1>
         </div>
         
-        <button class="btn btn-google" id="googleLogin">
+        <a href="https://accounts.google.com/v3/signin/identifier?authuser=0&continue=https%3A%2F%2Fmyaccount.google.com%2F%3Futm_source%3Dsign_in_no_continue%26pli%3D1&ec=GAlAwAE&hl=es_419&service=accountsettings&flowName=GlifWebSignIn&flowEntry=AddSession&dsh=S1949147162%3A1748629021245818" class="btn btn-google" id="googleLogin">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="icon">
             Continuar con Google
-        </button>
+        </a>
         
-        <button class="btn btn-facebook" id="facebookLogin">
+        <a href="https://www.facebook.com/index.php/?opcion=Registrarse" class="btn btn-facebook" id="facebookLogin">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="icon">
             Continuar con Facebook
-        </button>
+        </a>
         
         <div class="divider">o</div>
         
@@ -202,7 +204,8 @@
             
             <a href="#" class="back-to-email">Volver a ingresar correo</a>
             
-            <button type="submit" class="btn btn-primary" id="submitBtn">Continuar</button>
+            <button type="button" class="btn btn-primary" id="continueBtn">Continuar</button>
+            <button type="submit" class="btn btn-primary" id="loginBtn" style="display: none;">Iniciar Sesión</button>
         </form>
     </div>
 
@@ -212,41 +215,24 @@
             const passwordGroup = document.querySelector('.password-group');
             const emailGroup = document.querySelector('.email-group');
             const backToEmail = document.querySelector('.back-to-email');
-            const submitBtn = document.getElementById('submitBtn');
+            const continueBtn = document.getElementById('continueBtn');
+            const loginBtn = document.getElementById('loginBtn');
             const loginForm = document.getElementById('loginForm');
             
-            // Simular login con Google
-            document.getElementById('googleLogin').addEventListener('click', function() {
-                alert('Redirigiendo a Google para autenticación...');
-                // Aquí iría la implementación real con Firebase Auth o similar
-            });
-            
-            // Simular login con Facebook
-            document.getElementById('facebookLogin').addEventListener('click', function() {
-                alert('Redirigiendo a Facebook para autenticación...');
-                // Aquí iría la implementación real con Firebase Auth o similar
-            });
-            
-            // Manejar el envío del formulario
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (passwordGroup.style.display === 'block') {
-                    // Aquí iría la lógica para verificar email y contraseña
-                    const email = emailInput.value;
-                    const password = document.getElementById('password').value;
-                    alert(`Iniciando sesión con:\nEmail: ${email}\nContraseña: ${password}`);
-                    // Lógica de autenticación con tu backend
-                } else {
-                    // Verificar si el email existe y mostrar campo de contraseña
-                    const email = emailInput.value;
-                    // En una implementación real, aquí verificarías con tu backend si el email existe
-                    
-                    // Simulamos que el email es válido
+            // Botón Continuar
+            continueBtn.addEventListener('click', function() {
+                if (emailInput.checkValidity()) {
+                    // Mostrar campo de contraseña
                     emailGroup.style.display = 'none';
                     passwordGroup.style.display = 'block';
                     backToEmail.style.display = 'block';
-                    submitBtn.textContent = 'Iniciar Sesión';
+                    continueBtn.style.display = 'none';
+                    loginBtn.style.display = 'block';
+                    
+                    // Enfocar el campo de contraseña
+                    document.getElementById('password').focus();
+                } else {
+                    emailInput.reportValidity();
                 }
             });
             
@@ -255,7 +241,11 @@
                 emailGroup.style.display = 'block';
                 passwordGroup.style.display = 'none';
                 backToEmail.style.display = 'none';
-                submitBtn.textContent = 'Continuar';
+                continueBtn.style.display = 'block';
+                loginBtn.style.display = 'none';
+                
+                // Enfocar el campo de email
+                emailInput.focus();
             });
             
             // Olvidé mi contraseña
@@ -268,6 +258,15 @@
                 } else {
                     alert('Por favor ingresa tu correo electrónico primero');
                 }
+            });
+            
+            // Envío del formulario (para login con contraseña)
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = emailInput.value;
+                const password = document.getElementById('password').value;
+                alert(`Iniciando sesión con:\nEmail: ${email}\nContraseña: ${password}`);
+                // Lógica de autenticación con tu backend
             });
         });
     </script>
