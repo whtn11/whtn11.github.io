@@ -3,278 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BYLE - Cuestionario</title>
+    <title>Iniciar Sesión</title>
     <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
             background-color: #f5f5f5;
-            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        .notebook {
+        
+        .login-container {
             background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
             padding: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        h1 {
             text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 24px;
             margin-bottom: 30px;
         }
-        h2 {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 30px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .form-group {
+        
+        .input-group {
             margin-bottom: 20px;
+            text-align: left;
         }
+        
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
+            color: #555;
+            font-weight: 500;
         }
-        input[type="text"], input[type="number"] {
+        
+        input {
             width: 100%;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s;
         }
-        .radio-group, .checkbox-group {
+        
+        input:focus {
+            outline: none;
+            border-color: #4285f4;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
             margin-bottom: 15px;
         }
-        .radio-option, .checkbox-option {
-            margin-bottom: 8px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #3498db;
+        
+        .btn-primary {
+            background-color: #4285f4;
             color: white;
-            border: none;
-            border-radius: 4px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3367d6;
+        }
+        
+        .btn-google {
+            background-color: white;
+            color: #757575;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-google:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .btn-facebook {
+            background-color: #4267B2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-facebook:hover {
+            background-color: #365899;
+        }
+        
+        .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: #757575;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider::before {
+            margin-right: 10px;
+        }
+        
+        .divider::after {
+            margin-left: 10px;
+        }
+        
+        .forgot-password {
+            display: block;
+            text-align: right;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .password-group {
+            display: none;
+        }
+        
+        .back-to-email {
+            display: none;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 15px;
             cursor: pointer;
-            font-size: 16px;
         }
-        button:hover {
-            background-color: #2980b9;
-        }
-        button.secondary {
-            background-color: #95a5a6;
-        }
-        button.secondary:hover {
-            background-color: #7f8c8d;
+        
+        .back-to-email:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="notebook">
-        <h1>BYLE</h1>
+    <div class="login-container">
+        <div class="logo">
+            <!-- Aquí puedes colocar tu logo -->
+            <h1>Iniciar Sesión</h1>
+        </div>
         
-        <form id="questionnaire">
-            <div class="section">
-                <h2>INTRODUCE TUS DATOS</h2>
-                
-                <div class="form-group">
-                    <label>DISPONIBILIDAD SEMANAL</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="weekly1" name="weekly_availability" value="1-2 días">
-                            <label for="weekly1">1-2 DÍAS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="weekly2" name="weekly_availability" value="3-4 días">
-                            <label for="weekly2">3-4 DÍAS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="weekly3" name="weekly_availability" value="6 días">
-                            <label for="weekly3">6 DÍAS</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>DISPONIBILIDAD DE HORAS DIARIAS</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="daily1" name="daily_availability" value="10-20 minutos">
-                            <label for="daily1">10-20 MINUTOS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="daily2" name="daily_availability" value="30-40 minutos">
-                            <label for="daily2">30-40 MINUTOS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="daily3" name="daily_availability" value="50-60 minutos">
-                            <label for="daily3">50-60 MINUTOS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="daily4" name="daily_availability" value="60-120 minutos">
-                            <label for="daily4">60-120 MINUTOS</label>
-                        </div>
-                    </div>
-                </div>
+        <button class="btn btn-google" id="googleLogin">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="icon">
+            Continuar con Google
+        </button>
+        
+        <button class="btn btn-facebook" id="facebookLogin">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="icon">
+            Continuar con Facebook
+        </button>
+        
+        <div class="divider">o</div>
+        
+        <form id="loginForm">
+            <div class="input-group email-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
             </div>
             
-            <hr>
-            
-            <div class="section">
-                <h2>INTRODUCE TUS DATOS</h2>
-                
-                <div class="form-group">
-                    <label for="allergies">ALÉRGIAS:</label>
-                    <input type="text" id="allergies" name="allergies">
-                </div>
-                
-                <div class="form-group">
-                    <label for="diet">¿SIGUES ALGÚN TIPO DE DIETA? (VEGANA, VEGETARIANA, KETO, PALEO, ETC.):</label>
-                    <input type="text" id="diet" name="diet">
-                </div>
-                
-                <div class="form-group">
-                    <label for="preferences">¿TIENES ALGUNA PREFERENCIA CULTURAL O RELIGIOSA CON RESPECTO A LA COMIDA?</label>
-                    <input type="text" id="preferences" name="preferences">
-                </div>
-                
-                <div class="form-group">
-                    <label for="disliked_foods">¿QUÉ ALIMENTOS NO TE GUSTAN?</label>
-                    <input type="text" id="disliked_foods" name="disliked_foods">
-                </div>
-                
-                <div class="form-group">
-                    <label for="liked_foods">¿QUÉ ALIMENTOS SÍ TE GUSTAN?</label>
-                    <input type="text" id="liked_foods" name="liked_foods">
-                </div>
-                
-                <div class="form-group">
-                    <label>¿CUÁNTAS COMIDAS HACES AL DÍA? (INCLUYENDO SNACKS)</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="meals1" name="daily_meals" value="Menos de 3">
-                            <label for="meals1">MENOS DE 3</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="meals2" name="daily_meals" value="Más de 3">
-                            <label for="meals2">MÁS DE 3</label>
-                        </div>
-                    </div>
-                </div>
+            <div class="input-group password-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
             </div>
             
-            <hr>
+            <a href="#" class="back-to-email">Volver a ingresar correo</a>
             
-            <div class="section">
-                <h2>INTRODUCE TUS DATOS</h2>
-                
-                <div class="form-group">
-                    <label for="weight">PESO:</label>
-                    <input type="number" id="weight" name="weight" min="0" step="0.1"> Kg
-                </div>
-                
-                <div class="form-group">
-                    <label for="height">ESTATURA:</label>
-                    <input type="number" id="height" name="height" min="0"> Cm
-                </div>
-                
-                <div class="form-group">
-                    <label>¿TIENE ALGUNA DISCAPACIDAD?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="disability_yes" name="disability" value="Sí">
-                            <label for="disability_yes">SÍ</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="disability_no" name="disability" value="No">
-                            <label for="disability_no">NO</label>
-                        </div>
-                    </div>
-                    <input type="text" id="disability_specify" name="disability_specify" placeholder="ESPECIFÍQUE:" style="margin-top: 10px;">
-                </div>
-                
-                <div class="form-group">
-                    <label>¿YA HA ENTRENADO ANTES?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="trained_yes" name="trained_before" value="Sí">
-                            <label for="trained_yes">SÍ</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="trained_no" name="trained_before" value="No">
-                            <label for="trained_no">NO</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>FRECUENCIA</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="frequency1" name="training_frequency" value="Diario">
-                            <label for="frequency1">DIARIO</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="frequency2" name="training_frequency" value="Más de tres veces por semana">
-                            <label for="frequency2">MÁS DE TRES VECES POR SEMANA</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="frequency3" name="training_frequency" value="Menos de tres veces por semana">
-                            <label for="frequency3">MENOS DE TRES VECES POR SEMANA</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>NIVEL DE EXP</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="level1" name="experience_level" value="Experimentado">
-                            <label for="level1">EXPERIMENTADO</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="level2" name="experience_level" value="Sé bastante">
-                            <label for="level2">SÉ BASTANTE</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="level3" name="experience_level" value="Sé algunas cosas">
-                            <label for="level3">SÉ ALGUNAS COSAS</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="level4" name="experience_level" value="Principiante">
-                            <label for="level4">PRINCIPIANTE</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="buttons">
-                <button type="button" class="secondary">ATRAS</button>
-                <button type="submit">TERMINAR</button>
-                <button type="button">SIGUIENTE</button>
-            </div>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Continuar</button>
         </form>
     </div>
 
     <script>
-        // You can add JavaScript functionality here
-        document.getElementById('questionnaire').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Formulario enviado con éxito!');
-            // Here you would typically send the data to a server
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordGroup = document.querySelector('.password-group');
+            const emailGroup = document.querySelector('.email-group');
+            const backToEmail = document.querySelector('.back-to-email');
+            const submitBtn = document.getElementById('submitBtn');
+            const loginForm = document.getElementById('loginForm');
+            
+            // Simular login con Google
+            document.getElementById('googleLogin').addEventListener('click', function() {
+                alert('Redirigiendo a Google para autenticación...');
+                // Aquí iría la implementación real con Firebase Auth o similar
+            });
+            
+            // Simular login con Facebook
+            document.getElementById('facebookLogin').addEventListener('click', function() {
+                alert('Redirigiendo a Facebook para autenticación...');
+                // Aquí iría la implementación real con Firebase Auth o similar
+            });
+            
+            // Manejar el envío del formulario
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (passwordGroup.style.display === 'block') {
+                    // Aquí iría la lógica para verificar email y contraseña
+                    const email = emailInput.value;
+                    const password = document.getElementById('password').value;
+                    alert(`Iniciando sesión con:\nEmail: ${email}\nContraseña: ${password}`);
+                    // Lógica de autenticación con tu backend
+                } else {
+                    // Verificar si el email existe y mostrar campo de contraseña
+                    const email = emailInput.value;
+                    // En una implementación real, aquí verificarías con tu backend si el email existe
+                    
+                    // Simulamos que el email es válido
+                    emailGroup.style.display = 'none';
+                    passwordGroup.style.display = 'block';
+                    backToEmail.style.display = 'block';
+                    submitBtn.textContent = 'Iniciar Sesión';
+                }
+            });
+            
+            // Volver a ingresar correo
+            backToEmail.addEventListener('click', function() {
+                emailGroup.style.display = 'block';
+                passwordGroup.style.display = 'none';
+                backToEmail.style.display = 'none';
+                submitBtn.textContent = 'Continuar';
+            });
+            
+            // Olvidé mi contraseña
+            document.querySelector('.forgot-password').addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = emailInput.value;
+                if (email) {
+                    alert(`Se enviará un enlace para restablecer la contraseña a: ${email}`);
+                    // Aquí iría la lógica para enviar el email de recuperación
+                } else {
+                    alert('Por favor ingresa tu correo electrónico primero');
+                }
+            });
         });
     </script>
 </body>
